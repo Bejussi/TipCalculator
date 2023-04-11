@@ -6,6 +6,6 @@ data class TipState(
     val person: Int = 1,
     val perPerson: Double = 0.0,
     val total: Double = 0.0,
-    val rounding: RoundingType = RoundingType.UP,
+    val rounding: RoundingType = RoundingType.NOTHING,
     val percent: TipPercent = TipPercent.TEN
 )

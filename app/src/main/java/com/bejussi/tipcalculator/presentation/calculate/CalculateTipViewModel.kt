@@ -2,6 +2,8 @@ package com.bejussi.tipcalculator.presentation.calculate
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.bejussi.tipcalculator.R
+import com.bejussi.tipcalculator.core.StringResourcesProvider
 import com.bejussi.tipcalculator.domain.tip.TipRepository
 import com.bejussi.tipcalculator.domain.tip.model.Tip
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -12,42 +14,49 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CalculateTipViewModel @Inject constructor(
-    private val repository: TipRepository
-): ViewModel() {
+    private val repository: TipRepository,
+    private val stringResourcesProvider: StringResourcesProvider
+) : ViewModel() {
 
     private val _state = MutableStateFlow(TipState())
     val state = _state.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), TipState())
 
+    private val _event = MutableSharedFlow<UIEvent>()
+    val event = _event.asSharedFlow()
+
     fun onEvent(event: TipEvent) {
-        when(event) {
+        when (event) {
             is TipEvent.SaveTip -> {
-                val base = state.value.base
 
-                if (base.isFinite()) {
+                if (_state.value.base == EMPTY_VALUE) {
+                    viewModelScope.launch {
+                        _event.emit(
+                            UIEvent.ShowToast(
+                                message = stringResourcesProvider.getString(R.string.empty_message)
+                            )
+                        )
+                    }
                     return
-                }
+                } else {
+                    val tip = Tip(
+                        base = state.value.base,
+                        tip = state.value.tip,
+                        person = state.value.person,
+                        perPerson = state.value.perPerson,
+                        total = state.value.total,
+                        date = Calendar.getInstance().time
+                    )
 
-                val tip = Tip(
-                    base = state.value.base,
-                    tip = state.value.tip,
-                    person = state.value.person,
-                    perPerson = state.value.perPerson,
-                    total = state.value.total,
-                    date = Calendar.getInstance().time
-                )
-
-                viewModelScope.launch {
-                    repository.insertTip(tip = tip)
+                    viewModelScope.launch {
+                        repository.insertTip(tip = tip)
+                    }
                 }
             }
 
             is TipEvent.SetBase -> {
                 _state.update {
                     calculateTip(
-                        base = event.base,
-                        percentage = it.percent,
-                        split = it.person,
-                        roundUpTip = it.rounding
+                        base = event.base
                     )
                 }
             }
@@ -55,9 +64,6 @@ class CalculateTipViewModel @Inject constructor(
             is TipEvent.SetRounding -> {
                 _state.update {
                     calculateTip(
-                        base = it.base,
-                        percentage = it.percent,
-                        split = it.person,
                         roundUpTip = event.rounding
                     )
                 }
@@ -66,10 +72,7 @@ class CalculateTipViewModel @Inject constructor(
             is TipEvent.SetSplit -> {
                 _state.update {
                     calculateTip(
-                        base = it.base,
-                        percentage = it.percent,
-                        split = event.person,
-                        roundUpTip = it.rounding
+                        split = event.person
                     )
                 }
             }
@@ -77,10 +80,7 @@ class CalculateTipViewModel @Inject constructor(
             is TipEvent.SetTipPercent -> {
                 _state.update {
                     calculateTip(
-                        base = it.base,
-                        percentage = event.tipPercent,
-                        split = it.person,
-                        roundUpTip = it.rounding
+                        percentage = event.tipPercent
                     )
                 }
             }
@@ -88,28 +88,30 @@ class CalculateTipViewModel @Inject constructor(
     }
 
     private fun calculateTip(
-        base: Double,
-        percentage: TipPercent,
-        split: Int,
-        roundUpTip: RoundingType
+        base: Double = _state.value.base,
+        percentage: TipPercent = _state.value.percent,
+        split: Int = _state.value.person,
+        roundUpTip: RoundingType = _state.value.rounding
     ): TipState {
 
-        val percent = when(percentage) {
+        val percent = when (percentage) {
             TipPercent.TEN -> TipPercent.TEN.persent
             TipPercent.FIFTEEN -> TipPercent.FIFTEEN.persent
             TipPercent.TWENTY -> TipPercent.TWENTY.persent
             TipPercent.TWENTYFIVE -> TipPercent.TWENTYFIVE.persent
         }
 
-        var tip = percent.times(base)
+        val tip = roundDouble(percent.times(base))
 
-        tip = when (roundUpTip) {
-            RoundingType.UP -> kotlin.math.ceil(tip)
-            RoundingType.DOWN -> kotlin.math.floor(tip)
+        var total = roundDouble(base.plus(tip))
+
+        total = when (roundUpTip) {
+            RoundingType.NOTHING -> total
+            RoundingType.UP -> kotlin.math.ceil(total)
+            RoundingType.DOWN -> kotlin.math.floor(total)
         }
 
-        val total = base.plus(tip)
-        val perPerson = total.div(split)
+        val perPerson = roundDouble(total.div(split))
 
         val tipState = TipState(
             base = base,
@@ -123,4 +125,6 @@ class CalculateTipViewModel @Inject constructor(
 
         return tipState
     }
+
+    private fun roundDouble(value: Double): Double = Math.round(value * 100.0) / 100.00
 }

@@ -11,11 +11,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.bejussi.tipcalculator.R
+import com.bejussi.tipcalculator.core.makeToast
 import com.bejussi.tipcalculator.databinding.FragmentCalculateBinding
-import com.google.android.material.chip.Chip
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
+const val EMPTY_VALUE = 0.0
 
 @AndroidEntryPoint
 class CalculateFragment : Fragment() {
@@ -43,17 +45,32 @@ class CalculateFragment : Fragment() {
                     tipResultText.text = it.tip.toString()
                     perPersonResultText.text = it.perPerson.toString()
                     totalResultText.text = it.total.toString()
+                    splitByTitleText.text = getString(R.string.split_by, it.person)
+                }
+            }
+        }
+
+        lifecycleScope.launch {
+            calculateTipViewModel.event.collectLatest {
+                when (it) {
+                    is UIEvent.ShowToast -> requireContext().makeToast(it.message)
                 }
             }
         }
 
         binding.billEditText.addTextChangedListener(object : TextWatcher {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                calculateTipViewModel.onEvent(TipEvent.SetBase(p0.toString().toDouble()))
+                if (p0!!.isNotEmpty()) {
+                    calculateTipViewModel.onEvent(TipEvent.SetBase(p0.toString().toDouble()))
+                }
             }
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-            override fun afterTextChanged(p0: Editable?) {}
 
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            override fun afterTextChanged(p0: Editable?) {
+                if (p0!!.isEmpty()) {
+                    calculateTipViewModel.onEvent(TipEvent.SetBase(EMPTY_VALUE))
+                }
+            }
         })
 
         binding.tenChip.setOnClickListener {
@@ -77,9 +94,14 @@ class CalculateFragment : Fragment() {
             override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
                 calculateTipViewModel.onEvent(TipEvent.SetSplit(p0!!.progress))
             }
+
             override fun onStartTrackingTouch(p0: SeekBar?) {}
             override fun onStopTrackingTouch(p0: SeekBar?) {}
         })
+
+        binding.nothingRoundingChip.setOnClickListener {
+            calculateTipViewModel.onEvent(TipEvent.SetRounding(RoundingType.NOTHING))
+        }
 
         binding.upRoundingChip.setOnClickListener {
             calculateTipViewModel.onEvent(TipEvent.SetRounding(RoundingType.UP))
