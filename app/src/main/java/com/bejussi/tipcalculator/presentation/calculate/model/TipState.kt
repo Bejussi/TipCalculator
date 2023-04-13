@@ -1,4 +1,4 @@
-package com.bejussi.tipcalculator.presentation.calculate
+package com.bejussi.tipcalculator.presentation.calculate.model
 
 data class TipState(
     val base: Double = 0.0,

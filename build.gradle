@@ -4,25 +4,34 @@ buildscript {
     ext {
         application = "7.2.1"
         android = "1.8.0"
-        core_ktx = "1.9.0"
+        core_ktx = "1.10.0"
         appcompat = "1.6.1"
         material = "1.8.0"
         constraintlayout = "2.1.4"
         junit = "4.13.2"
         test_junit = "1.1.5"
+        runner = "1.5.2"
         hilt_version = "2.44"
         nav_version = "2.5.3"
         lifecycle_version = '2.6.1'
         coroutines_core_version = "1.5.0"
         coroutines_android_version = "1.6.4"
+        coroutines_test_version = "1.6.4"
         datastore_preferences = "1.0.0"
         work_runtime_ktx = "2.8.0"
         room_runtime = "2.5.1"
         safe_args = "2.5.1"
+        splash_screen = "1.0.0"
+        truth = "1.0.1"
+        core_testing = "1.1.1"
+        espresso_core = "3.5.1"
+        mockito_core = "2.21.0"
+        coroutines_debug = "1.6.4"
     }
 
     dependencies {
         classpath("androidx.navigation:navigation-safe-args-gradle-plugin:$safe_args")
+        classpath("org.jetbrains.kotlinx:kotlinx-coroutines-debug:$coroutines_debug")
     }
 }
 

@@ -1,4 +1,4 @@
-package com.bejussi.tipcalculator.presentation.calculate
+package com.bejussi.tipcalculator.presentation.calculate.model
 
 sealed interface TipEvent {
     object SaveTip: TipEvent

@@ -1,4 +1,4 @@
-package com.bejussi.tipcalculator.presentation.calculate
+package com.bejussi.tipcalculator.presentation.calculate.model
 
 enum class TipPercent(val persent: Double) {
     TEN(0.1),

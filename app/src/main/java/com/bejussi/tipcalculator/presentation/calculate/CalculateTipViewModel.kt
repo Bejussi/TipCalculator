@@ -6,6 +6,7 @@ import com.bejussi.tipcalculator.R
 import com.bejussi.tipcalculator.core.StringResourcesProvider
 import com.bejussi.tipcalculator.domain.tip.TipRepository
 import com.bejussi.tipcalculator.domain.tip.model.Tip
+import com.bejussi.tipcalculator.presentation.calculate.model.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -49,6 +50,11 @@ class CalculateTipViewModel @Inject constructor(
 
                     viewModelScope.launch {
                         repository.insertTip(tip = tip)
+                        _event.emit(
+                            UIEvent.ShowToast(
+                                message = stringResourcesProvider.getString(R.string.success_save_message)
+                            )
+                        )
                     }
                 }
             }

@@ -48,6 +48,12 @@ dependencies {
     //JUnit
     testImplementation "junit:junit:$junit"
     androidTestImplementation "androidx.test.ext:junit:$test_junit"
+    implementation "androidx.test:runner:$runner"
+    androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_test_version"
+    androidTestImplementation "com.google.truth:truth:$truth"
+    androidTestImplementation "android.arch.core:core-testing:$core_testing"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_core"
+    androidTestImplementation "org.mockito:mockito-core:$mockito_core"
 
     // Navigation component
     implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
@@ -69,13 +75,11 @@ dependencies {
     // Coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_core_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_android_version"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-debug:$coroutines_debug"
 
     // Preference DataStore
     implementation "androidx.datastore:datastore-preferences:$datastore_preferences"
 
     //Splash Screen api
-    implementation 'androidx.core:core-splashscreen:1.0.0'
-
-    //Change Language
-    implementation 'com.akexorcist:localization:1.2.11'
+    implementation "androidx.core:core-splashscreen:$splash_screen"
 }
