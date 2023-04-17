@@ -93,7 +93,7 @@ class CalculateTipViewModel @Inject constructor(
         }
     }
 
-    private fun calculateTip(
+    fun calculateTip(
         base: Double = _state.value.base,
         percentage: TipPercent = _state.value.percent,
         split: Int = _state.value.person,

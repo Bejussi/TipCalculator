@@ -46,14 +46,25 @@ dependencies {
     implementation "androidx.constraintlayout:constraintlayout:$constraintlayout"
 
     //JUnit
-    testImplementation "junit:junit:$junit"
-    androidTestImplementation "androidx.test.ext:junit:$test_junit"
     implementation "androidx.test:runner:$runner"
+    androidTestImplementation "androidx.test.ext:junit:$test_junit"
     androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_test_version"
     androidTestImplementation "com.google.truth:truth:$truth"
     androidTestImplementation "android.arch.core:core-testing:$core_testing"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_core"
     androidTestImplementation "org.mockito:mockito-core:$mockito_core"
+    androidTestImplementation "org.mockito.kotlin:mockito-kotlin:$mockito_kotlin"
+    androidTestImplementation "org.mockito:mockito-android:$mockito_android"
+    androidTestImplementation "app.cash.turbine:turbine:$turbine"
+
+    testImplementation "junit:junit:$junit"
+    testImplementation "org.mockito:mockito-core:$mockito_core"
+    testImplementation "org.mockito.kotlin:mockito-kotlin:$mockito_kotlin"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_test_version"
+    testImplementation "com.google.truth:truth:$truth"
+    testImplementation "android.arch.core:core-testing:$core_testing"
+    testImplementation "androidx.test.espresso:espresso-core:$espresso_core"
+    testImplementation "app.cash.turbine:turbine:$turbine"
 
     // Navigation component
     implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
