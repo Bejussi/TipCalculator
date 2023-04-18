@@ -16,6 +16,7 @@ import com.bejussi.tipcalculator.databinding.FragmentCalculateBinding
 import com.bejussi.tipcalculator.presentation.calculate.model.RoundingType
 import com.bejussi.tipcalculator.presentation.calculate.model.TipEvent
 import com.bejussi.tipcalculator.presentation.calculate.model.TipPercent
+import com.bejussi.tipcalculator.presentation.core.UIEvent
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch

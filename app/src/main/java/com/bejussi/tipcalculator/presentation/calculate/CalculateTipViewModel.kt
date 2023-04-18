@@ -7,6 +7,7 @@ import com.bejussi.tipcalculator.core.StringResourcesProvider
 import com.bejussi.tipcalculator.domain.tip.TipRepository
 import com.bejussi.tipcalculator.domain.tip.model.Tip
 import com.bejussi.tipcalculator.presentation.calculate.model.*
+import com.bejussi.tipcalculator.presentation.core.UIEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch

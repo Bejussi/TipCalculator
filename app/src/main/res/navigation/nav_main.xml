@@ -10,4 +10,9 @@
         android:name="com.bejussi.tipcalculator.presentation.calculate.CalculateFragment"
         android:label="fragment_calculate"
         tools:layout="@layout/fragment_calculate" />
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="com.bejussi.tipcalculator.presentation.history.HistoryFragment"
+        android:label="fragment_history"
+        tools:layout="@layout/fragment_history" />
 </navigation>

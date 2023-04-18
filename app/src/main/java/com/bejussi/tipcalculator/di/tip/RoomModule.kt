@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.bejussi.tipcalculator.data.tip.TipRepositoryImpl
 import com.bejussi.tipcalculator.data.tip.room.TipDao
+import com.bejussi.tipcalculator.data.tip.room.TipDataToDomain
 import com.bejussi.tipcalculator.data.tip.room.TipDatabase
 import com.bejussi.tipcalculator.data.tip.room.TipDomainToData
 import com.bejussi.tipcalculator.domain.tip.TipRepository
@@ -37,9 +38,11 @@ object RoomModule {
     @Singleton
     fun provideTipRepository(
         tipDao: TipDao,
+        tipDataToDomain: TipDataToDomain,
         tipDomainToData: TipDomainToData
     ): TipRepository = TipRepositoryImpl(
         tipDao = tipDao,
-        mapper = tipDomainToData
+        mapperToData = tipDomainToData,
+        mapperToDomain = tipDataToDomain
     )
 }
