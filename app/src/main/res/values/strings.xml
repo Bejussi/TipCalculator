@@ -29,4 +29,5 @@
     <string name="success_save_message">Successfully saved!</string>
     <string name="success_delete_message">Successfully deleted!</string>
     <string name="empty_search">No records</string>
+    <string name="send_data">Date: %s \nBase: %.2f \nTip: %.2f \nPerson: %d \nPer person: %.2f \nTotal: %.2f</string>
 </resources>
