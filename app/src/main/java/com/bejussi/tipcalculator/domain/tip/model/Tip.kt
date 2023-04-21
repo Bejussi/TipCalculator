@@ -10,5 +10,5 @@ data class Tip(
     val person: Int,
     val perPerson: Double,
     val total: Double,
-    val date: Date
+    val date: String
 )

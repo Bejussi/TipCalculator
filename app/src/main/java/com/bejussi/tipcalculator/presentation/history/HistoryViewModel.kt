@@ -32,7 +32,24 @@ class HistoryViewModel @Inject constructor(
     fun onEvent(event: HistoryTipEvent) {
         when (event) {
             is HistoryTipEvent.SearchTip -> {
-//
+                viewModelScope.launch {
+                    repository.getTipsByDate(event.date).collect {
+                        if (it.isEmpty()) {
+                            _event.emit(
+                                UIEvent.ShowToast(
+                                    message = stringResourcesProvider.getString(R.string.empty_date_list)
+                                )
+                            )
+                        } else {
+                            _state.emit(
+                                HistoryTipState(
+                                    tipList = it,
+                                    cancelVisibility = true
+                                )
+                            )
+                        }
+                    }
+                }
             }
             is HistoryTipEvent.DeleteTip -> {
                 viewModelScope.launch {
@@ -49,7 +66,8 @@ class HistoryViewModel @Inject constructor(
                     repository.getAllTips().collect {
                         _state.emit(
                             HistoryTipState(
-                                tipList = it
+                                tipList = it,
+                                cancelVisibility = false
                             )
                         )
                     }

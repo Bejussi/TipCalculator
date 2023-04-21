@@ -11,11 +11,11 @@ interface TipDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertTip(tip: TipData)
 
-    @Query("SELECT * FROM tip")
+    @Query("SELECT * FROM tip ORDER BY id DESC")
     fun getAllTips(): Flow<List<TipData>>
 
-    @Query("SELECT * FROM tip WHERE date = :date")
-    fun getTipsByDate(date: Date): Flow<List<TipData>>
+    @Query("SELECT * FROM tip WHERE date = :date ORDER BY id DESC")
+    fun getTipsByDate(date: String): Flow<List<TipData>>
 
     @Delete
     suspend fun deleteTip(tip: TipData)

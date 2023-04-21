@@ -3,6 +3,7 @@ package com.bejussi.tipcalculator.data.tip
 import com.bejussi.tipcalculator.data.tip.room.TipDao
 import com.bejussi.tipcalculator.data.tip.room.TipDataToDomain
 import com.bejussi.tipcalculator.data.tip.room.TipDomainToData
+import com.bejussi.tipcalculator.data.tip.room.model.TipData
 import com.bejussi.tipcalculator.domain.tip.TipRepository
 import com.bejussi.tipcalculator.domain.tip.model.Tip
 import kotlinx.coroutines.flow.Flow
@@ -34,5 +35,14 @@ class TipRepositoryImpl @Inject constructor(
     override suspend fun deleteTip(tip: Tip) {
         val tipData = mapperToData.map(tip)
         tipDao.deleteTip(tip = tipData)
+    }
+
+    override fun getTipsByDate(date: String): Flow<List<Tip>> {
+        val tips = tipDao.getTipsByDate(date).map { list ->
+            list.map {
+                mapperToDomain.map(it)
+            }
+        }
+        return tips
     }
 }

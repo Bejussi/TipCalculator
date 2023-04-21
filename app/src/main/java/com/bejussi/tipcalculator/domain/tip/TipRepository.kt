@@ -12,4 +12,6 @@ interface TipRepository {
     fun getAllTips(): Flow<List<Tip>>
 
     suspend fun deleteTip(tip: Tip)
+
+    fun getTipsByDate(date: String): Flow<List<Tip>>
 }

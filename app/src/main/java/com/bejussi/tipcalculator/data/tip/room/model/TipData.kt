@@ -20,5 +20,5 @@ data class TipData(
     @ColumnInfo(name = "total", typeAffinity = ColumnInfo.REAL)
     val total: Double,
     @ColumnInfo(name = "date")
-    val date: Date
+    val date: String
 )
