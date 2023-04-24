@@ -3,7 +3,6 @@ package com.bejussi.tipcalculator.data.tip.room
 import androidx.room.*
 import com.bejussi.tipcalculator.data.tip.room.model.TipData
 import kotlinx.coroutines.flow.Flow
-import java.util.*
 
 @Dao
 interface TipDao {
@@ -17,6 +16,4 @@ interface TipDao {
     @Query("SELECT * FROM tip WHERE date = :date ORDER BY id DESC")
     fun getTipsByDate(date: String): Flow<List<TipData>>
 
-    @Delete
-    suspend fun deleteTip(tip: TipData)
 }

@@ -51,16 +51,6 @@ class HistoryViewModel @Inject constructor(
                     }
                 }
             }
-            is HistoryTipEvent.DeleteTip -> {
-                viewModelScope.launch {
-                    repository.deleteTip(event.tip)
-                    _event.emit(
-                        UIEvent.ShowToast(
-                            message = stringResourcesProvider.getString(R.string.success_delete_message)
-                        )
-                    )
-                }
-            }
             is HistoryTipEvent.CancelSearchTip -> {
                 viewModelScope.launch {
                     repository.getAllTips().collect {
