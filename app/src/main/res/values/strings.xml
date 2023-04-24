@@ -19,6 +19,7 @@
     <string name="base">Base</string>
     <string name="tip">Tip</string>
     <string name="per_person">Per person</string>
+    <string name="person">Person</string>
     <string name="total">Total</string>
     <string name="_00_00">00.00</string>
     <string name="cancel">Cancel</string>
@@ -26,4 +27,10 @@
     <string name="no">No</string>
     <string name="empty_message">Save error. Fields cannot be empty</string>
     <string name="success_save_message">Successfully saved!</string>
+    <string name="success_delete_message">Successfully deleted!</string>
+    <string name="success_restore_message">Successfully restored!</string>
+    <string name="empty_search">No records</string>
+    <string name="send_data">Date: %s \nBase: %.2f \nTip: %.2f \nPerson: %d \nPer person: %.2f \nTotal: %.2f</string>
+    <string name="empty_date_list">No records by this date</string>
+    <string name="undo">Undo</string>
 </resources>

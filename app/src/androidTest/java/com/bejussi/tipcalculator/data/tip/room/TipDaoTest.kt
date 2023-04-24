@@ -48,12 +48,32 @@ class TipDaoTest {
             person = 4,
             perPerson = 74.18,
             total = 296.7,
-            date = Calendar.getInstance().time
+            date = "22 апр., 2023"
         )
         dao.insertTip(tip)
 
         val job = async(Dispatchers.IO) {
             dao.getAllTips().collect {
+                assertThat(it).contains(tip)
+            }
+        }
+        job.cancelAndJoin()
+    }
+
+    @Test
+    fun searchTip_returnTip() = runTest {
+        val tip = TipData(
+            base = 258.0,
+            tip = 38.7,
+            person = 4,
+            perPerson = 74.18,
+            total = 296.7,
+            date = "22 апр., 2023"
+        )
+        dao.insertTip(tip)
+
+        val job = async(Dispatchers.IO) {
+            dao.getTipsByDate(tip.date).collect {
                 assertThat(it).contains(tip)
             }
         }

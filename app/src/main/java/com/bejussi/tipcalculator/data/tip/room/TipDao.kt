@@ -1,9 +1,6 @@
 package com.bejussi.tipcalculator.data.tip.room
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.bejussi.tipcalculator.data.tip.room.model.TipData
 import kotlinx.coroutines.flow.Flow
 
@@ -13,6 +10,10 @@ interface TipDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertTip(tip: TipData)
 
-    @Query("SELECT * FROM tip")
+    @Query("SELECT * FROM tip ORDER BY id DESC")
     fun getAllTips(): Flow<List<TipData>>
+
+    @Query("SELECT * FROM tip WHERE date = :date ORDER BY id DESC")
+    fun getTipsByDate(date: String): Flow<List<TipData>>
+
 }

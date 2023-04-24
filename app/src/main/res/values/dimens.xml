@@ -17,6 +17,10 @@
     <dimen name="button_margin_start">16dp</dimen>
     <dimen name="margin_start">24dp</dimen>
     <dimen name="margin_end">24dp</dimen>
+    <dimen name="recycler_margin_top">28dp</dimen>
+    <dimen name="recycler_item_margin_top">16dp</dimen>
+    <dimen name="item_tip_radius">10dp</dimen>
+    <dimen name="icons_margin">12dp</dimen>
 
     <dimen name="chip_stroke">1dp</dimen>
 

@@ -1,5 +1,6 @@
 package com.bejussi.tipcalculator.presentation.calculate
 
+import android.icu.text.SimpleDateFormat
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bejussi.tipcalculator.R
@@ -7,6 +8,7 @@ import com.bejussi.tipcalculator.core.StringResourcesProvider
 import com.bejussi.tipcalculator.domain.tip.TipRepository
 import com.bejussi.tipcalculator.domain.tip.model.Tip
 import com.bejussi.tipcalculator.presentation.calculate.model.*
+import com.bejussi.tipcalculator.presentation.core.UIEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -45,7 +47,7 @@ class CalculateTipViewModel @Inject constructor(
                         person = state.value.person,
                         perPerson = state.value.perPerson,
                         total = state.value.total,
-                        date = Calendar.getInstance().time
+                        date = getCurrentDate()
                     )
 
                     viewModelScope.launch {
@@ -91,6 +93,12 @@ class CalculateTipViewModel @Inject constructor(
                 }
             }
         }
+    }
+
+    private fun getCurrentDate(): String {
+        val sdf = SimpleDateFormat("dd MMM, yyyy")
+        val currentDateAndTime: String = sdf.format(Date())
+        return currentDateAndTime
     }
 
     fun calculateTip(

@@ -9,11 +9,10 @@ import com.bejussi.tipcalculator.data.tip.room.model.TipData
     entities = [TipData::class],
     version = 1
 )
-@TypeConverters(DateConverter::class)
 abstract class TipDatabase: RoomDatabase() {
     abstract fun tipDao(): TipDao
 
     companion object {
-        const val DATABASE_NAME = "tip_database"
+        const val DATABASE_NAME = "tips_database"
     }
 }
