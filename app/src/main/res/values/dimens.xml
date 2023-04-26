@@ -19,6 +19,10 @@
     <dimen name="margin_end">24dp</dimen>
     <dimen name="recycler_margin_top">28dp</dimen>
     <dimen name="recycler_item_margin_top">16dp</dimen>
+    <dimen name="setting_subtitle_margin_top">28dp</dimen>
+    <dimen name="setting_menu_margin_top">20dp</dimen>
+    <dimen name="setting_menu_margin_start">16dp</dimen>
+    <dimen name="setting_menu_item__margin_top">16dp</dimen>
     <dimen name="item_tip_radius">10dp</dimen>
     <dimen name="icons_margin">12dp</dimen>
 
@@ -27,5 +31,6 @@
     <dimen name="fragment_title_text_size">24sp</dimen>
     <dimen name="result_title_text_size">14sp</dimen>
     <dimen name="fragment_subtitle_text_size">16sp</dimen>
+    <dimen name="fragment_subtitle_menu_text_size">12sp</dimen>
 
 </resources>

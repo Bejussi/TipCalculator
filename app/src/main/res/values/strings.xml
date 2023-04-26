@@ -27,10 +27,25 @@
     <string name="no">No</string>
     <string name="empty_message">Save error. Fields cannot be empty</string>
     <string name="success_save_message">Successfully saved!</string>
-    <string name="success_delete_message">Successfully deleted!</string>
-    <string name="success_restore_message">Successfully restored!</string>
     <string name="empty_search">No records</string>
     <string name="send_data">Date: %s \nBase: %.2f \nTip: %.2f \nPerson: %d \nPer person: %.2f \nTotal: %.2f</string>
     <string name="empty_date_list">No records by this date</string>
-    <string name="undo">Undo</string>
+    <string name="general">General</string>
+    <string name="theme">Theme</string>
+    <string name="language">Language</string>
+    <string name="contact_with_us">Contact with us</string>
+    <string name="rate_us">Rate us</string>
+    <string name="contact">Contact</string>
+    <string name="about">About</string>
+    <string name="privacy_policy">Privacy policy</string>
+    <string name="terms_and_conditions">Terms and Conditions</string>
+    <string name="enjoying_this_app">Enjoying this app?</string>
+    <string name="we_appreciate_your_support_in_every_way">We appreciate your support in every way!</string>
+    <string name="version">1.0.0</string>
+    <string name="select_theme">Select Theme</string>
+    <string-array name="themes">
+        <item>Light</item>
+        <item>Dark</item>
+    </string-array>
+    <string name="ok">Ok</string>
 </resources>

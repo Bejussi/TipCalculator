@@ -14,17 +14,10 @@
         android:id="@+id/historyFragment"
         android:name="com.bejussi.tipcalculator.presentation.history.HistoryFragment"
         android:label="fragment_history"
-        tools:layout="@layout/fragment_history" >
-        <action
-            android:id="@+id/action_historyFragment_to_datePickerFragment"
-            app:destination="@id/datePickerFragment" />
-    </fragment>
-    <dialog
-        android:id="@+id/datePickerFragment"
-        android:name="com.bejussi.tipcalculator.presentation.history.model.DatePickerFragment"
-        android:label="DatePickerFragment" >
-        <action
-            android:id="@+id/action_datePickerFragment_to_historyFragment"
-            app:destination="@id/historyFragment" />
-    </dialog>
+        tools:layout="@layout/fragment_history" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.bejussi.tipcalculator.presentation.settings.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
 </navigation>
