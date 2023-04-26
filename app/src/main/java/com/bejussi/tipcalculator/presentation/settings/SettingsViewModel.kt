@@ -15,10 +15,17 @@ class SettingsViewModel @Inject constructor(
 ): ViewModel() {
 
     val getTheme = settingsDataStoreRepository.getTheme().asLiveData(Dispatchers.IO)
+    val getLanguage = settingsDataStoreRepository.getLanguage().asLiveData(Dispatchers.IO)
 
     fun setTheme(isDarkMode : Boolean) {
         viewModelScope.launch(Dispatchers.IO) {
             settingsDataStoreRepository.setTheme(isDarkMode)
+        }
+    }
+
+    fun setLanguage(language : String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            settingsDataStoreRepository.setLanguage(language)
         }
     }
 }

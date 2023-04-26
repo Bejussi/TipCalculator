@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.os.LocaleListCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -38,6 +39,11 @@ class MainActivity : AppCompatActivity() {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
                 }
             }
+        }
+
+        settingsViewModel.getLanguage.observe(this@MainActivity) { language ->
+            val localeList = LocaleListCompat.forLanguageTags(language)
+            AppCompatDelegate.setApplicationLocales(localeList)
         }
     }
 }

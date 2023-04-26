@@ -23,6 +23,7 @@ class SettingsFragment : Fragment() {
     private val settingsViewModel: SettingsViewModel by viewModels()
 
     private var selectedThemeIndex = 0
+    private var selectedLanguageIndex = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,12 +48,26 @@ class SettingsFragment : Fragment() {
             }
         }
 
+        settingsViewModel.getLanguage.observe(viewLifecycleOwner) { language ->
+            when (language) {
+                "en" -> {
+                    selectedLanguageIndex = 0
+                }
+                "ru" -> {
+                    selectedLanguageIndex = 1
+                }
+                "uk" -> {
+                    selectedLanguageIndex = 2
+                }
+            }
+        }
+
         binding.themeLayout.setOnClickListener {
             showThemeDialog()
         }
 
         binding.languageLayout.setOnClickListener {
-
+            showLanguageDialog()
         }
 
         binding.rateLayout.setOnClickListener {
@@ -89,6 +104,39 @@ class SettingsFragment : Fragment() {
                 dialog.dismiss()
             }
             .show()
+    }
+
+    private fun showLanguageDialog() {
+        val languages = resources.getStringArray(R.array.language)
+
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle(getString(R.string.select_theme))
+            .setSingleChoiceItems(languages, selectedLanguageIndex) { dialog_, which ->
+                selectedLanguageIndex = which
+            }
+            .setPositiveButton(getString(R.string.ok)) {  dialog, which ->
+                setLanguage(selectedLanguageIndex)
+            }
+            .setNegativeButton(getString(R.string.cancel)) { dialog, which ->
+                dialog.dismiss()
+            }
+            .show()
+    }
+
+    private fun setLanguage(selectedLanguageIndex: Int) {
+        lifecycleScope.launch {
+            when(selectedLanguageIndex) {
+                0 -> {
+                    settingsViewModel.setLanguage("en")
+                }
+                1 -> {
+                    settingsViewModel.setLanguage("ru")
+                }
+                2 -> {
+                    settingsViewModel.setLanguage("uk")
+                }
+            }
+        }
     }
 
     private fun setTheme(selectedThemeIndex: Int) {
