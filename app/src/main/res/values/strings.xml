@@ -54,4 +54,6 @@
         <item>Russian</item>
         <item>Ukrainian</item>
     </string-array>
+    <string name="application_not_found">Application not found</string>
+    <string name="send_email">Send email</string>
 </resources>

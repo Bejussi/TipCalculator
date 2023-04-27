@@ -1,16 +1,22 @@
 package com.bejussi.tipcalculator.presentation.settings
 
+import android.content.ActivityNotFoundException
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.LocaleListCompat
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.bejussi.tipcalculator.BuildConfig
 import com.bejussi.tipcalculator.R
+import com.bejussi.tipcalculator.core.makeToast
 import com.bejussi.tipcalculator.databinding.FragmentSettingsBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
@@ -71,19 +77,31 @@ class SettingsFragment : Fragment() {
         }
 
         binding.rateLayout.setOnClickListener {
-
+            val intent = Intent(Intent.ACTION_VIEW).apply {
+                data = Uri.parse(
+                    "https://play.google.com/store/apps/details?id=com.bejussi.tipcalculator"
+                )
+                setPackage("com.android.vending")
+            }
+            startActivity(intent)
         }
 
         binding.contactLayout.setOnClickListener {
-
+            val intent = Intent(Intent.ACTION_SENDTO)
+                .setData(Uri.parse("mailto:?subject=Tip Calculator&body=Feedback for Tip Calculator&to=bejussiapp@gmail.com"))
+            if (intent.resolveActivity(requireContext().packageManager) != null) {
+                startActivity(intent)
+            }
         }
 
         binding.privacyLayout.setOnClickListener {
-
+            val action = SettingsFragmentDirections.actionSettingsFragmentToWebFragment("privacy")
+            findNavController().navigate(action)
         }
 
         binding.termsLayout.setOnClickListener {
-
+            val action = SettingsFragmentDirections.actionSettingsFragmentToWebFragment("terms")
+            findNavController().navigate(action)
         }
 
         binding.version.text = BuildConfig.VERSION_NAME
@@ -97,7 +115,7 @@ class SettingsFragment : Fragment() {
             .setSingleChoiceItems(themes, selectedThemeIndex) { dialog_, which ->
                 selectedThemeIndex = which
             }
-            .setPositiveButton(getString(R.string.ok)) {  dialog, which ->
+            .setPositiveButton(getString(R.string.ok)) { dialog, which ->
                 setTheme(selectedThemeIndex)
             }
             .setNegativeButton(getString(R.string.cancel)) { dialog, which ->
@@ -110,11 +128,11 @@ class SettingsFragment : Fragment() {
         val languages = resources.getStringArray(R.array.language)
 
         MaterialAlertDialogBuilder(requireContext())
-            .setTitle(getString(R.string.select_theme))
+            .setTitle(getString(R.string.select_language))
             .setSingleChoiceItems(languages, selectedLanguageIndex) { dialog_, which ->
                 selectedLanguageIndex = which
             }
-            .setPositiveButton(getString(R.string.ok)) {  dialog, which ->
+            .setPositiveButton(getString(R.string.ok)) { dialog, which ->
                 setLanguage(selectedLanguageIndex)
             }
             .setNegativeButton(getString(R.string.cancel)) { dialog, which ->
@@ -125,7 +143,7 @@ class SettingsFragment : Fragment() {
 
     private fun setLanguage(selectedLanguageIndex: Int) {
         lifecycleScope.launch {
-            when(selectedLanguageIndex) {
+            when (selectedLanguageIndex) {
                 0 -> {
                     settingsViewModel.setLanguage("en")
                 }
@@ -141,7 +159,7 @@ class SettingsFragment : Fragment() {
 
     private fun setTheme(selectedThemeIndex: Int) {
         lifecycleScope.launch {
-            when(selectedThemeIndex) {
+            when (selectedThemeIndex) {
                 0 -> {
                     settingsViewModel.setTheme(false)
                 }

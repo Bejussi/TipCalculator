@@ -55,4 +55,6 @@
         <item>Російська</item>
         <item>Українська</item>
     </string-array>
+    <string name="application_not_found">Додаток не знайдено</string>
+    <string name="send_email">Відправити лист</string>
 </resources>

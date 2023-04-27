@@ -55,4 +55,6 @@
         <item>Русский</item>
         <item>Украинский</item>
     </string-array>
+    <string name="application_not_found">Приложение не найдено</string>
+    <string name="send_email">Отправить письмо</string>
 </resources>
