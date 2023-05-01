@@ -47,14 +47,20 @@
     <string-array name="themes">
         <item>Світла</item>
         <item>Темна</item>
+        <item>Системна</item>
     </string-array>
     <string name="ok">Ок</string>
     <string name="select_language">Виберіть мову</string>
     <string-array name="language">
         <item>Англійська</item>
-        <item>Російська</item>
         <item>Українська</item>
+        <item>Російська</item>
+        <item>Німецька</item>
+        <item>Французька</item>
+        <item>Іспанська</item>
     </string-array>
     <string name="application_not_found">Додаток не знайдено</string>
     <string name="send_email">Відправити лист</string>
+    <string name="coffee_price">2.99$</string>
+    <string name="coffee">Coffee</string>
 </resources>

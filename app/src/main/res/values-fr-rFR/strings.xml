@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TipCalculator</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Bonjour fragment vide</string>
+    <string name="calculate">Calculer</string>
+    <string name="history">Historique</string>
+    <string name="settings">Paramètres</string>
+    <string name="calculate_tip">Calculer le pourboire</string>
+    <string name="bill_total">Montant total</string>
+    <string name="choose_tip">Choisir un conseil</string>
+    <string name="split_by">Fractionner par %d</string>
+    <string name="rounding_amount">Montant arrondi</string>
+    <string name="_10">10%</string>
+    <string name="_15">15%</string>
+    <string name="_20">20%</string>
+    <string name="_25">25%</string>
+    <string name="up">Haut</string>
+    <string name="down">En bas</string>
+    <string name="base">Base</string>
+    <string name="tip">Pourboire</string>
+    <string name="per_person">Par personne</string>
+    <string name="person">Personne</string>
+    <string name="total">Total</string>
+    <string name="_00_00">00.00</string>
+    <string name="cancel">Annuler</string>
+    <string name="save">Enregistrer</string>
+    <string name="no">Non</string>
+    <string name="empty_message">Erreur de sauvegarde. Les champs ne peuvent pas être vides</string>
+    <string name="success_save_message">Enregistré avec succès!</string>
+    <string name="empty_search">Aucune entrée</string>
+    <string name="send_data">Date: %s \nBase: %.2f \nPourboire: %.2f \nPersonne: %d \nPar personne: %.2f \nTotal: %.2f</string>
+    <string name="empty_date_list">Aucune entrée pour cette date</string>
+    <string name="general">Général</string>
+    <string name="theme">Thème</string>
+    <string name="language">Langue</string>
+    <string name="contact_with_us">Contactez-nous</string>
+    <string name="rate_us">Évaluez-nous</string>
+    <string name="contact">Contacts</string>
+    <string name="about">À propos de nous</string>
+    <string name="privacy_policy">Politique de confidentialité</string>
+    <string name="terms_and_conditions">Termes et conditions</string>
+    <string name="enjoying_this_app">Aimez-vous cette application?</string>
+    <string name="we_appreciate_your_support_in_every_way">Nous apprécions votre soutien à tous égards!</string>
+    <string name="version">1.0.0</string>
+    <string name="select_theme">Sélectionner un thème</string>
+    <string-array name="themes">
+        <item>Lumière</item>
+        <item>Sombre</item>
+        <item>Systémique</item>
+    </string-array>
+    <string name="ok">OK</string>
+    <string name="select_language">Sélectionnez une langue</string>
+    <string-array name="language">
+        <item>Anglais</item>
+        <item>Ukrainien</item>
+        <item>Russe</item>
+        <item>Allemand</item>
+        <item>Français</item>
+        <item>Espagnol</item>
+    </string-array>
+    <string name="application_not_found">Application introuvable</string>
+    <string name="send_email">Envoyer un e-mail</string>
+    <string name="coffee_price">2,99$</string>
+    <string name="coffee">Café</string>
+</resources>

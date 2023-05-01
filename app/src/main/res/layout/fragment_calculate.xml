@@ -154,7 +154,7 @@
             app:layout_constraintTop_toBottomOf="@+id/split_seekbar" />
 
         <com.google.android.material.chip.ChipGroup
-            android:id="@+id/rounding_choose"
+            android:id="@+id/donate_choose"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/fragment_content_margin_top"
@@ -203,7 +203,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rounding_choose">
+            app:layout_constraintTop_toBottomOf="@+id/donate_choose">
 
             <TextView
                 android:id="@+id/textView"

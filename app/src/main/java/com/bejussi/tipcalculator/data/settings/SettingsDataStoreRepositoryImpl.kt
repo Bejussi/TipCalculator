@@ -14,17 +14,17 @@ class SettingsDataStoreRepositoryImpl @Inject constructor(
 ): SettingsDataStoreRepository {
 
     companion object {
-        val darkModeKey = booleanPreferencesKey("DARK_MODE_KEY")
+        val themeModeKey = stringPreferencesKey("THEME_MODE_KEY")
         val languageKey = stringPreferencesKey("LANGUAGE_KEY")
     }
 
-    override suspend fun setTheme(isDarkMode: Boolean) {
+    override suspend fun setTheme(themeMode: String) {
         dataStore.edit { preferences ->
-            preferences[darkModeKey] = isDarkMode
+            preferences[themeModeKey] = themeMode
         }
     }
 
-    override fun getTheme(): Flow<Boolean> {
+    override fun getTheme(): Flow<String> {
         return dataStore.data
             .catch { exception ->
                 if (exception is IOException) {
@@ -34,7 +34,7 @@ class SettingsDataStoreRepositoryImpl @Inject constructor(
                 }
             }
             .map { preferences ->
-                val uiMode = preferences[darkModeKey] ?: false
+                val uiMode = preferences[themeModeKey] ?: "light"
                 uiMode
             }
     }

@@ -5,10 +5,14 @@
     <dimen name="fragment_title_margin_top">32dp</dimen>
     <dimen name="fragment_subtitle_margin_top">24dp</dimen>
     <dimen name="fragment_content_margin_top">16dp</dimen>
+    <dimen name="billing_price_margin_top">4dp</dimen>
+    <dimen name="billing_margin">16dp</dimen>
     <dimen name="result_content_margin_top">20dp</dimen>
     <dimen name="result_margin_top">28dp</dimen>
     <dimen name="result_radius">10dp</dimen>
     <dimen name="button_radius">100dp</dimen>
+    <dimen name="bill_radius">10dp</dimen>
+    <dimen name="bill_margin_elements">12dp</dimen>
     <dimen name="button_corner">1dp</dimen>
     <dimen name="result_content_margin_bottom">20dp</dimen>
     <dimen name="result_content_margin_start">16dp</dimen>

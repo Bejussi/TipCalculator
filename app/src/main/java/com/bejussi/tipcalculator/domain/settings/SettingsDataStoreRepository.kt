@@ -4,9 +4,9 @@ import kotlinx.coroutines.flow.Flow
 
 interface SettingsDataStoreRepository {
 
-    suspend fun setTheme(isDarkMode: Boolean)
+    suspend fun setTheme(themeMode: String)
 
-    fun getTheme(): Flow<Boolean>
+    fun getTheme(): Flow<String>
 
     suspend fun setLanguage(language: String)
 

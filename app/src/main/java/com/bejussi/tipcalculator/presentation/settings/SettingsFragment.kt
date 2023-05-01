@@ -1,23 +1,24 @@
 package com.bejussi.tipcalculator.presentation.settings
 
-import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
+import android.opengl.Visibility
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.os.LocaleListCompat
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.android.billingclient.api.ProductDetails
 import com.bejussi.tipcalculator.BuildConfig
 import com.bejussi.tipcalculator.R
-import com.bejussi.tipcalculator.core.makeToast
 import com.bejussi.tipcalculator.databinding.FragmentSettingsBinding
+import com.bejussi.tipcalculator.presentation.settings.billing.BillingActionListener
+import com.bejussi.tipcalculator.presentation.settings.billing.BillingAdapter
+import com.bejussi.tipcalculator.presentation.settings.billing.BillingViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -27,6 +28,9 @@ class SettingsFragment : Fragment() {
 
     private lateinit var binding: FragmentSettingsBinding
     private val settingsViewModel: SettingsViewModel by viewModels()
+    private val billingViewModel: BillingViewModel by viewModels()
+
+    private lateinit var adapter: BillingAdapter
 
     private var selectedThemeIndex = 0
     private var selectedLanguageIndex = 0
@@ -43,13 +47,27 @@ class SettingsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        settingsViewModel.getTheme.observe(viewLifecycleOwner) { isDarkMode ->
-            when (isDarkMode) {
-                true -> {
+        setupRecyclerView()
+
+        billingViewModel.productsList.observe(viewLifecycleOwner) {
+            adapter.submitList(it)
+        }
+
+        billingViewModel.loading.observe(viewLifecycleOwner) { loading ->
+            binding.progress.isVisible = loading
+            binding.donateChoose.isVisible = !loading
+        }
+
+        settingsViewModel.getTheme.observe(viewLifecycleOwner) { themeMode ->
+            when (themeMode) {
+                "light" -> {
+                    selectedThemeIndex = 0
+                }
+                "dark" -> {
                     selectedThemeIndex = 1
                 }
-                false -> {
-                    selectedThemeIndex = 0
+                "system" -> {
+                    selectedThemeIndex = 2
                 }
             }
         }
@@ -59,11 +77,20 @@ class SettingsFragment : Fragment() {
                 "en" -> {
                     selectedLanguageIndex = 0
                 }
-                "ru" -> {
+                "uk" -> {
                     selectedLanguageIndex = 1
                 }
-                "uk" -> {
+                "ru" -> {
                     selectedLanguageIndex = 2
+                }
+                "de" -> {
+                    selectedLanguageIndex = 3
+                }
+                "fr" -> {
+                    selectedLanguageIndex = 4
+                }
+                "es" -> {
+                    selectedLanguageIndex = 5
                 }
             }
         }
@@ -107,6 +134,15 @@ class SettingsFragment : Fragment() {
         binding.version.text = BuildConfig.VERSION_NAME
     }
 
+    private fun setupRecyclerView() {
+        adapter = BillingAdapter(object : BillingActionListener {
+            override fun startBilling(productDetails: ProductDetails) {
+                billingViewModel.launchBillingFlow(requireActivity(), productDetails)
+            }
+        })
+        binding.donateChoose.adapter = adapter
+    }
+
     private fun showThemeDialog() {
         val themes = resources.getStringArray(R.array.themes)
 
@@ -148,10 +184,19 @@ class SettingsFragment : Fragment() {
                     settingsViewModel.setLanguage("en")
                 }
                 1 -> {
-                    settingsViewModel.setLanguage("ru")
+                    settingsViewModel.setLanguage("uk")
                 }
                 2 -> {
-                    settingsViewModel.setLanguage("uk")
+                    settingsViewModel.setLanguage("ru")
+                }
+                3 -> {
+                    settingsViewModel.setLanguage("de")
+                }
+                4 -> {
+                    settingsViewModel.setLanguage("fr")
+                }
+                5 -> {
+                    settingsViewModel.setLanguage("es")
                 }
             }
         }
@@ -161,10 +206,13 @@ class SettingsFragment : Fragment() {
         lifecycleScope.launch {
             when (selectedThemeIndex) {
                 0 -> {
-                    settingsViewModel.setTheme(false)
+                    settingsViewModel.setTheme("light")
                 }
                 1 -> {
-                    settingsViewModel.setTheme(true)
+                    settingsViewModel.setTheme("dark")
+                }
+                2 -> {
+                    settingsViewModel.setTheme("system")
                 }
             }
         }

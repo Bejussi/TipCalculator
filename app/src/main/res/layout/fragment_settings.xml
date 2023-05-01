@@ -215,42 +215,30 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/enjoying" />
 
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/rounding_choose"
-            android:layout_width="match_parent"
+        <ProgressBar
+            android:id="@+id/progress"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/setting_menu_margin_top"
+            android:visibility="visible"
             android:layout_marginStart="@dimen/margin_start"
-            android:layout_marginEnd="@dimen/margin_end"
+            android:layout_marginTop="@dimen/setting_menu_margin_top"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appreciate"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/donate_choose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:layout_marginStart="@dimen/margin_start"
+            android:layout_marginTop="@dimen/setting_menu_margin_top"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/appreciate"
-            app:selectionRequired="true"
-            app:singleSelection="true">
-
-            <com.google.android.material.chip.Chip
-                style="@style/Chip"
-                android:id="@+id/nothingRoundingChip"
-                android:checked="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/no" />
-
-            <com.google.android.material.chip.Chip
-                style="@style/Chip"
-                android:id="@+id/upRoundingChip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/up" />
-
-            <com.google.android.material.chip.Chip
-                style="@style/Chip"
-                android:id="@+id/downRoundingChip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/down" />
-
-        </com.google.android.material.chip.ChipGroup>
+            tools:listitem="@layout/donate_item" />
 
         <TextView
             android:id="@+id/about"
@@ -261,7 +249,7 @@
             android:layout_marginStart="@dimen/margin_start"
             android:text="@string/about"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rounding_choose" />
+            app:layout_constraintTop_toBottomOf="@+id/donate_choose" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/privacy_layout"

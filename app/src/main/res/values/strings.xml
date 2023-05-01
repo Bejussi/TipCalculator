@@ -25,11 +25,11 @@
     <string name="cancel">Cancel</string>
     <string name="save">Save</string>
     <string name="no">No</string>
-    <string name="empty_message">Save error. Fields cannot be empty</string>
-    <string name="success_save_message">Successfully saved!</string>
-    <string name="empty_search">No records</string>
+    <string name="empty_message" translatable="true">Save error. Fields cannot be empty</string>
+    <string name="success_save_message" translatable="true">Successfully saved!</string>
+    <string name="empty_search" translatable="true">No records</string>
     <string name="send_data">Date: %s \nBase: %.2f \nTip: %.2f \nPerson: %d \nPer person: %.2f \nTotal: %.2f</string>
-    <string name="empty_date_list">No records by this date</string>
+    <string name="empty_date_list" translatable="true">No records by this date</string>
     <string name="general">General</string>
     <string name="theme">Theme</string>
     <string name="language">Language</string>
@@ -46,14 +46,20 @@
     <string-array name="themes">
         <item>Light</item>
         <item>Dark</item>
+        <item>System</item>
     </string-array>
     <string name="ok">Ok</string>
     <string name="select_language">Select Language</string>
     <string-array name="language">
         <item>English</item>
-        <item>Russian</item>
         <item>Ukrainian</item>
+        <item>Russian</item>
+        <item>German</item>
+        <item>French</item>
+        <item>Spanish</item>
     </string-array>
     <string name="application_not_found">Application not found</string>
     <string name="send_email">Send email</string>
+    <string name="coffee_price">2.99$</string>
+    <string name="coffee">Coffee</string>
 </resources>
