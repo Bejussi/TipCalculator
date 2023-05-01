@@ -13,8 +13,8 @@ android {
         applicationId "com.bejussi.tipcalculator"
         minSdk 26
         targetSdk 32
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -42,6 +42,7 @@ dependencies {
 
     implementation "androidx.core:core-ktx:$core_ktx"
     implementation "androidx.appcompat:appcompat:$appcompat"
+    implementation "androidx.appcompat:appcompat-resources:$appcompat"
     implementation "com.google.android.material:material:$material"
     implementation "androidx.constraintlayout:constraintlayout:$constraintlayout"
 
@@ -91,6 +92,7 @@ dependencies {
     // Preference DataStore
     implementation "androidx.datastore:datastore-preferences:$datastore_preferences"
 
-    //Splash Screen api
-    implementation "androidx.core:core-splashscreen:$splash_screen"
+    //Billings
+    implementation("com.android.billingclient:billing-ktx:$billing_version")
+    implementation("com.android.billingclient:billing:$billing_version")
 }

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TipCalculator</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hallo leeres Fragment</string>
+    <string name="calculate">Berechnen</string>
+    <string name="history">Geschichte</string>
+    <string name="settings">Neuigkeiten</string>
+    <string name="calculate_tip">Bitte um Rat</string>
+    <string name="bill_total">Gefällt mir</string>
+    <string name="choose_tip">Geben Sie eine Antwort ein</string>
+    <string name="split_by">Änderung bei %d</string>
+    <string name="rounding_amount">Geben Sie einen Betrag ein</string>
+    <string name="_10">10%</string>
+    <string name="_15">15%</string>
+    <string name="_20">20%</string>
+    <string name="_25">25%</string>
+    <string name="up">Herr</string>
+    <string name="down">Runter</string>
+    <string name="base">Entschuldigung</string>
+    <string name="tip">Ja</string>
+    <string name="per_person">Meine Güte</string>
+    <string name="person">Schelow</string>
+    <string name="total">Geben</string>
+    <string name="_00_00">00.00</string>
+    <string name="cancel">Entschuldigung</string>
+    <string name="save">Öffnen</string>
+    <string name="no">Nein</string>
+    <string name="empty_message">Fehler speichern. Felder dürfen nicht leer sein</string>
+    <string name="success_save_message">Bitte beachten!</string>
+    <string name="empty_search">Geben Sie ein</string>
+    <string name="send_data">Datei: %s \nDatei: %.2f \nDatei: %.2f \nDatei: %d \nDatei: %.2f \nDatei: %.2f</string>
+    <string name="empty_date_list">Bitte um ein Datum</string>
+    <string name="general">Bestätigen</string>
+    <string name="theme">Thema</string>
+    <string name="language">Sprache</string>
+    <string name="contact_with_us">Kontaktiere uns</string>
+    <string name="rate_us">Geben Sie das an</string>
+    <string name="contact">Kontakte</string>
+    <string name="about">Über uns</string>
+    <string name="privacy_policy">Kontaktdatenschutz</string>
+    <string name="terms_and_conditions">Bedingungen und Widerrufsrecht</string>
+    <string name="enjoying_this_app">Ist es nicht möglich?</string>
+    <string name="we_appreciate_your_support_in_every_way">Wir schätzen Ihre Unterstützung in jeder Hinsicht!</string>
+    <string name="version">1.0.0</string>
+    <string name="select_theme">Geben Sie das Thema ein</string>
+    <string-array name="themes">
+        <item>Verspätung</item>
+        <item>Dunkel</item>
+        <item>Systemisch</item>
+    </string-array>
+    <string name="ok">Ок</string>
+    <string name="select_language">Geben Sie eine Sprache ein</string>
+    <string-array name="language">
+        <item>Englisch</item>
+        <item>Ukrainisch</item>
+        <item>Russisch</item>
+        <item>Deutsch</item>
+        <item>Französisch</item>
+        <item>Spanisch</item>
+    </string-array>
+    <string name="application_not_found">Bitte nicht vergessen</string>
+    <string name="send_email">Öffne die Nachricht</string>
+    <string name="coffee_price">2,99$</string>
+    <string name="coffee">Kaffee</string>
+</resources>
