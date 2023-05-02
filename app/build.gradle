@@ -16,6 +16,8 @@ android {
         versionCode 2
         versionName "1.1"
 
+        resConfigs "en", "ru-rRu", "uk-rUa", "de-rDe", "es-rEs", "fr-rFr"
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -95,4 +97,7 @@ dependencies {
     //Billings
     implementation("com.android.billingclient:billing-ktx:$billing_version")
     implementation("com.android.billingclient:billing:$billing_version")
+
+    //Lottie
+    implementation "com.airbnb.android:lottie:4.2.2"
 }

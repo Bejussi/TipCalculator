@@ -9,6 +9,7 @@ import com.bejussi.tipcalculator.presentation.core.UIEvent
 import com.bejussi.tipcalculator.presentation.history.model.HistoryTipEvent
 import com.bejussi.tipcalculator.presentation.history.model.HistoryTipState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -22,8 +23,8 @@ class HistoryViewModel @Inject constructor(
     private val _state = MutableStateFlow(HistoryTipState())
     val state = _state.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000),HistoryTipState())
 
-    private val _event = MutableSharedFlow<UIEvent>()
-    val event = _event.asSharedFlow()
+    private val _event = Channel<UIEvent>()
+    val event = _event.receiveAsFlow()
 
     init {
         onEvent(HistoryTipEvent.CancelSearchTip)
@@ -35,7 +36,7 @@ class HistoryViewModel @Inject constructor(
                 viewModelScope.launch {
                     repository.getTipsByDate(event.date).collect {
                         if (it.isEmpty()) {
-                            _event.emit(
+                            _event.send(
                                 UIEvent.ShowToast(
                                     message = stringResourcesProvider.getString(R.string.empty_date_list)
                                 )
@@ -44,7 +45,8 @@ class HistoryViewModel @Inject constructor(
                             _state.emit(
                                 HistoryTipState(
                                     tipList = it,
-                                    cancelVisibility = true
+                                    cancelVisibility = true,
+                                    isEmptyList = it.isEmpty()
                                 )
                             )
                         }
@@ -57,7 +59,8 @@ class HistoryViewModel @Inject constructor(
                         _state.emit(
                             HistoryTipState(
                                 tipList = it,
-                                cancelVisibility = false
+                                cancelVisibility = false,
+                                isEmptyList = it.isEmpty()
                             )
                         )
                     }

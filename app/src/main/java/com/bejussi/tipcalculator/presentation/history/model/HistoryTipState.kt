@@ -4,5 +4,6 @@ import com.bejussi.tipcalculator.domain.tip.model.Tip
 
 data class HistoryTipState(
     val tipList: List<Tip> = emptyList(),
-    val cancelVisibility: Boolean = false
+    val cancelVisibility: Boolean = false,
+    val isEmptyList: Boolean = true
 )

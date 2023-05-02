@@ -1,20 +1,21 @@
 package com.bejussi.tipcalculator.presentation.settings
 
+import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
-import android.opengl.Visibility
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.android.billingclient.api.ProductDetails
 import com.bejussi.tipcalculator.BuildConfig
 import com.bejussi.tipcalculator.R
+import com.bejussi.tipcalculator.core.makeToast
 import com.bejussi.tipcalculator.databinding.FragmentSettingsBinding
 import com.bejussi.tipcalculator.presentation.settings.billing.BillingActionListener
 import com.bejussi.tipcalculator.presentation.settings.billing.BillingAdapter
@@ -104,20 +105,27 @@ class SettingsFragment : Fragment() {
         }
 
         binding.rateLayout.setOnClickListener {
-            val intent = Intent(Intent.ACTION_VIEW).apply {
-                data = Uri.parse(
-                    "https://play.google.com/store/apps/details?id=com.bejussi.tipcalculator"
+            val appPackageName = requireActivity().packageName
+            try {
+                val intent = Intent(Intent.ACTION_VIEW,
+                    Uri.parse("market://details?id=$appPackageName")
                 )
-                setPackage("com.android.vending")
+                startActivity(intent)
+            } catch (e: ActivityNotFoundException) {
+                val intent = Intent(Intent.ACTION_VIEW,
+                    Uri.parse("https://play.google.com/store/apps/details?id=$appPackageName")
+                )
+                startActivity(intent)
             }
-            startActivity(intent)
         }
 
         binding.contactLayout.setOnClickListener {
             val intent = Intent(Intent.ACTION_SENDTO)
-                .setData(Uri.parse("mailto:?subject=Tip Calculator&body=Feedback for Tip Calculator&to=bejussiapp@gmail.com"))
+                .setData(Uri.parse("mailto:?subject=TipCalc&body=Feedback for TipCalc&to=bejussiapp@gmail.com"))
             if (intent.resolveActivity(requireContext().packageManager) != null) {
                 startActivity(intent)
+            } else {
+                requireContext().makeToast(getString(R.string.application_not_found))
             }
         }
 

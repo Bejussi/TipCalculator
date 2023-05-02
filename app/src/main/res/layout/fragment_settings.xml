@@ -234,6 +234,7 @@
             android:layout_marginStart="@dimen/margin_start"
             android:layout_marginTop="@dimen/setting_menu_margin_top"
             android:orientation="horizontal"
+            android:layoutAnimation="@anim/recycler_view_animation"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
