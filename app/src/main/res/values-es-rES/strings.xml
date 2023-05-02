@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TipCalc</string>
+    <!-- TODO: eliminar o cambiar este texto de marcador de posición -->
+    <string name="hello_blank_fragment">Hola fragmento en blanco</string>
+    <string name="calculate">Calcular</string>
+    <string name="history">Historia</string>
+    <string name="settings">Configuración</string>
+    <string name="calculate_tip">Calcular propina</string>
+    <string name="bill_total">Cantidad total</string>
+    <string name="choose_tip">Elige un consejo</string>
+    <string name="split_by">Dividir por %d</string>
+    <string name="rounding_amount">Cantidad redonda</string>
+    <string name="_10">10%</string>
+    <string name="_15">15%</string>
+    <string name="_20">20%</string>
+    <string name="_25">25%</string>
+    <string name="up">Arriba</string>
+    <string name="down">Abajo</string>
+    <string name="base">Base</string>
+    <string name="tip">Сonsejos</string>
+    <string name="per_person">Por persona</string>
+    <string name="person">Persona</string>
+    <string name="total">Total</string>
+    <string name="_00_00">00.00</string>
+    <string name="cancel">Cancelar</string>
+    <string name="save">Guardar</string>
+    <string name="no">No</string>
+    <string name="empty_message">Error al guardar. Los campos no pueden estar vacíos</string>
+    <string name="success_save_message">¡Guardado con éxito!</string>
+    <string name="empty_search">Sin entradas</string>
+    <string name="send_data">Fecha: %s \nBase: %.2f \nPropina: %.2f \nPersona: %d \nPor persona: %.2f \nTotal: %.2f</string>
+    <string name="empty_date_list">No hay entradas para esta fecha</string>
+    <string name="general">General</string>
+    <string name="theme">Tema</string>
+    <string name="language">Idioma</string>
+    <string name="contact_with_us">Contáctenos</string>
+    <string name="rate_us">Califícanos</string>
+    <string name="contact">Contactos</string>
+    <string name="about">Sobre nosotros</string>
+    <string name="privacy_policy">Política de privacidad</string>
+    <string name="terms_and_conditions">Términos y Condiciones</string>
+    <string name="enjoying_this_app">¿Te gusta esta aplicación?</string>
+    <string name="we_appreciate_your_support_in_every_way">¡Agradecemos su apoyo en todos los sentidos!</string>
+    <string name="version">1.0.0</string>
+    <string name="select_theme">Seleccione un tema</string>
+    <string-array name="themes">
+        <item>Luz</item>
+        <item>Oscuro</item>
+        <item>Sistémico</item>
+    </string-array>
+    <string name="ok">OK</string>
+    <string name="select_language">Seleccione un idioma</string>
+    <string-array name="language">
+        <item>Inglés</item>
+        <item>Ucraniano</item>
+        <item>Ruso</item>
+        <item>Alemán</item>
+        <item>Francés</item>
+        <item>Español</item>
+    </string-array>
+    <string name="application_not_found">Aplicación no encontrada</string>
+    <string name="send_email">Enviar correo electrónico</string>
+    <string name="coffee_price">$2.99</string>
+    <string name="coffee">Café</string>
+</resources>
