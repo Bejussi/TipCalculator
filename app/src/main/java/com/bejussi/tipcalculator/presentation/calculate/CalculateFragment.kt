@@ -7,9 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SeekBar
+import androidx.arch.core.executor.ArchTaskExecutor.getInstance
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.getInstance
 import androidx.lifecycle.lifecycleScope
+import androidx.room.Database
 import com.bejussi.tipcalculator.R
 import com.bejussi.tipcalculator.core.makeToast
 import com.bejussi.tipcalculator.databinding.FragmentCalculateBinding
@@ -18,8 +21,11 @@ import com.bejussi.tipcalculator.presentation.calculate.model.TipEvent
 import com.bejussi.tipcalculator.presentation.calculate.model.TipPercent
 import com.bejussi.tipcalculator.presentation.core.UIEvent
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 const val EMPTY_VALUE = 0.0
@@ -56,11 +62,11 @@ class CalculateFragment : Fragment() {
         }
 
         lifecycleScope.launch {
-            calculateTipViewModel.event.collectLatest {
+            calculateTipViewModel.event.onEach {
                 when (it) {
                     is UIEvent.ShowToast -> requireContext().makeToast(it.message)
                 }
-            }
+            }.launchIn(viewLifecycleOwner.lifecycleScope)
         }
 
         binding.billEditText.addTextChangedListener(object : TextWatcher {

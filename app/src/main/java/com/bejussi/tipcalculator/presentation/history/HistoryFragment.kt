@@ -20,6 +20,8 @@ import com.bejussi.tipcalculator.presentation.core.UIEvent
 import com.bejussi.tipcalculator.presentation.history.model.HistoryTipEvent
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import java.util.*
 import javax.inject.Inject
@@ -52,6 +54,8 @@ class HistoryFragment : Fragment() {
 
         lifecycleScope.launch {
             historyViewModel.state.collect {
+                binding.tipsRecyclerView.isVisible = !it.isEmptyList
+                binding.emptyText.isVisible = it.isEmptyList
                 adapter.submitList(it.tipList) {
                     binding.tipsRecyclerView.post {
                         binding.tipsRecyclerView.scrollToPosition(0)
@@ -62,11 +66,11 @@ class HistoryFragment : Fragment() {
         }
 
         lifecycleScope.launch {
-            historyViewModel.event.collectLatest {
+            historyViewModel.event.onEach {
                 when (it) {
                     is UIEvent.ShowToast -> requireContext().makeToast(it.message)
                 }
-            }
+            }.launchIn(viewLifecycleOwner.lifecycleScope)
         }
 
         binding.calendarButton.setOnClickListener {

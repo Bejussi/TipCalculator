@@ -10,6 +10,7 @@ import com.bejussi.tipcalculator.domain.tip.model.Tip
 import com.bejussi.tipcalculator.presentation.calculate.model.*
 import com.bejussi.tipcalculator.presentation.core.UIEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import java.util.*
@@ -24,8 +25,9 @@ class CalculateTipViewModel @Inject constructor(
     private val _state = MutableStateFlow(TipState())
     val state = _state.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), TipState())
 
-    private val _event = MutableSharedFlow<UIEvent>()
-    val event = _event.asSharedFlow()
+    private val _event = Channel<UIEvent>()
+    val event = _event.receiveAsFlow()
+
 
     fun onEvent(event: TipEvent) {
         when (event) {
@@ -33,13 +35,12 @@ class CalculateTipViewModel @Inject constructor(
 
                 if (_state.value.base == EMPTY_VALUE) {
                     viewModelScope.launch {
-                        _event.emit(
+                        _event.send(
                             UIEvent.ShowToast(
                                 message = stringResourcesProvider.getString(R.string.empty_message)
                             )
                         )
                     }
-                    return
                 } else {
                     val tip = Tip(
                         base = state.value.base,
@@ -52,7 +53,7 @@ class CalculateTipViewModel @Inject constructor(
 
                     viewModelScope.launch {
                         repository.insertTip(tip = tip)
-                        _event.emit(
+                        _event.send(
                             UIEvent.ShowToast(
                                 message = stringResourcesProvider.getString(R.string.success_save_message)
                             )

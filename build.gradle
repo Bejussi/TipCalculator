@@ -30,6 +30,7 @@ buildscript {
         coroutines_debug = "1.6.4"
         turbine = "0.7.0"
         billing_version = "5.0.0"
+        lottie = "4.2.2"
     }
 
     dependencies {

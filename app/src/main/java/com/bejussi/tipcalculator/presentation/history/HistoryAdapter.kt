@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bejussi.tipcalculator.databinding.TipItemBinding
 import com.bejussi.tipcalculator.domain.tip.model.Tip
+import com.bejussi.tipcalculator.presentation.settings.billing.BillingAdapter
 
 class HistoryAdapter(
     private val tipActionListener: TipActionListener

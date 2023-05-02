@@ -37,6 +37,12 @@
         <item name="android:textColor">@color/black</item>
     </style>
 
+    <style name="FragmentEmptyText">
+        <item name="fontFamily">@font/poppins</item>
+        <item name="android:textSize">@dimen/fragment_subtitle_text_size</item>
+        <item name="android:textColor">@color/dark_grey</item>
+    </style>
+
     <style name="TextInputLayoutBoxColor" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="boxStrokeColor">@drawable/text_input_stroke_color</item>
         <item name="android:textColorHint">@color/black</item>
