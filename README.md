@@ -8,7 +8,7 @@ Is also part of my portfolio projects :) It showcases my skills regarding develo
 
 ## 🚀Currently available on the Play store
 
-<a href="https://play.google.com/store/apps/details?id=com.bejussi.tipcalculator"><img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png" height=36px /></a>
+<a href="https://play.google.com/store/apps/details?id=com.bejussi.tipcalculator"><img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png" height=100px /></a>
 
 ## 📸 Screenshots
 
